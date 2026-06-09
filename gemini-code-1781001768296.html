@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1学期中間テスト 5教科周回チェックシート</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        /* 固定表示のヘッダー */
+        .header-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            z-index: 1000;
+            text-align: center;
+        }
+        .progress-container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 8px auto 0 auto;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #2ecc71;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 750px;
+            margin: 110px auto 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .subject-block {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 20px;
+        }
+        .subject-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        /* 教科カラー */
+        .kokugo { color: #c0392b; border-color: #c0392b; }
+        .suugaku { color: #2980b9; border-color: #2980b9; }
+        .eigo { color: #27ae60; border-color: #27ae60; }
+        .rika { color: #16a085; border-color: #16a085; }
+        .shakai { color: #d35400; border-color: #d35400; }
+
+        .task-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 10px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            background-color: #ffffff;
+            border-bottom: 1px dashed #eee;
+        }
+        .task-name {
+            font-size: 14px;
+            flex-grow: 1;
+            padding-right: 10px;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 12px;
+        }
+        .check-label {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #555;
+            cursor: pointer;
+        }
+        .check-label input {
+            margin-right: 4px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .reset-btn {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-progress">
+    <div class="progress-text">📊 テスト勉強 達成度: <span id="percent-display">0</span>%</div>
+    <div class="progress-container">
+        <div class="progress-bar" id="my-bar"></div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>📝 1学期中間テスト 5教科完全攻略シート</h1>
+    <div class="subtitle">提出物ワークとプリントを3周して完璧を目指そう！</div>
+
+    <div class="subject-block">
+        <div class="subject-title kokugo">📕 国語</div>
+        
+        <div class="task-row">
+            <div class="task-name">「世界は美しいと」本文・ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">「握手」登場人物の心情・漢字・ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">「意見を聞き、適切さを判断する」/「説得力のある構成を考えよう」</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">「学びて時に之を習ふ（論語）」音読・現代語訳・重要語句</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">「作られた物語を超えて」文章構成・ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">「具体か抽象化」言葉のきまり・漢字</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="subject-block">
+        <div class="subject-title suugaku">📘 数学</div>
+        
+        <div class="task-row">
+            <div class="task-name">式の展開（分配法則・乗法公式）＆ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">因数分解（共通因数・公式の利用）＆ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">平方根（ルートの意味・大小・変形）＆ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="subject-block">
+        <div class="subject-title eigo">📗 英語</div>
+        
+        <div class="task-row">
+            <div class="task-name">現在完了形（継続・経験・完了）＆ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">現在完了進行形（have been + 動詞ing）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">help + 人 + 動詞の原形（「人が〜するのを手伝う」）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">It is A for B to C（「BにとってCすることはAだ」）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">教科書本文の日本語訳・単語熟語の暗記・ワーク</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="subject-block">
+        <div class="subject-title rika">🧪 理科</div>
+        
+        <div class="task-row">
+            <div class="task-name">化学反応と熱（発熱反応・吸熱反応）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">感覚器官・行動の仕組み（目・耳、刺激の伝わり方）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">電流による発熱（WやJの計算）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">電流と磁界（右手・フレミングの法則、電磁誘導）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">水溶液とイオン（電解質、陽イオン・陰イオン）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">酸・アルカリとイオン（pH、中和反応と塩）</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="subject-block">
+        <div class="subject-title shakai">🗺️ 社会</div>
+        
+        <div class="task-row">
+            <div class="task-name">明治政府による近代化のはじまり</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">近代国家への歩み</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">帝国主義と日本</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">アジアの強国の光と影</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">第一次世界大戦と民族独立の動き</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">高まるデモクラシーの意識</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+        <div class="task-row">
+            <div class="task-name">戦争に向かう世論</div>
+            <div class="checkbox-group">
+                <label class="check-label"><input type="checkbox"> 1周</label>
+                <label class="check-label"><input type="checkbox"> 2周</label>
+                <label class="check-label"><input type="checkbox"> 3周</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="reset-btn" onclick="resetChecks()">チェックをすべて外す</button>
+    </div>
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressBar = document.getElementById('my-bar');
+    const percentDisplay = document.getElementById('percent-display');
+
+    function updateProgress() {
+        const total = checkboxes.length;
+        let checkedCount = 0;
+        
+        checkboxes.forEach((cb) => {
+            if(cb.checked) checkedCount++;
+        });
+
+        const percentage = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+        progressBar.style.width = percentage + '%';
+        percentDisplay.innerText = percentage;
+    }
+    
+    checkboxes.forEach((cb, index) => {
+        // 新しい構造用にキーを「cb_unified_v1_」に設定
+        const savedValue = localStorage.getItem('cb_unified_v1_' + index);
+        cb.checked = (savedValue === 'true');
+        
+        cb.addEventListener('change', () => {
+            localStorage.setItem('cb_unified_v1_' + index, cb.checked);
+            updateProgress();
+        });
+    });
+
+    updateProgress();
+
+    function resetChecks() {
+        if(confirm('本当にすべてのチェックをリセットしますか？')) {
+            checkboxes.forEach((cb, index) => {
+                cb.checked = false;
+                localStorage.removeItem('cb_unified_v1_' + index);
+            });
+            updateProgress();
+        }
+    }
+</script>
+
+</body>
+</html>
